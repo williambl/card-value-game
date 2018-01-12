@@ -22,7 +22,7 @@ public class PropertyComponent : MonoBehaviour {
 
     void Update () {
         valueText.text = propertyValue.ToString();
-        valueSlider.fillAmount = propertyValue / 100;
+        valueSlider.fillAmount = (float)propertyValue / 100;
     }
 	
 }
