@@ -4,22 +4,26 @@ using UnityEngine;
 
 public class CardCreator : MonoBehaviour {
 
-    public Card testCard;
-    public GameObject cardObj;
-
     void Start () {
         Dictionary<string, int> testCardDict = new Dictionary<string, int>();
         testCardDict.Add("test property", 50);
         testCardDict.Add("test property 2", 100);
-        testCard = new Card(testCardDict, "testCard");
-
-        GameObject newCardObj = Instantiate(cardObj, GameObject.Find(
-                    "Canvas").transform);
-        newCardObj.GetComponent<CardComponent>().card = testCard;
+        CreateCardGameObject(testCardDict, "testCard");
     }
 	
     // Update is called once per frame
     void Update () {
 		
+    }
+
+    public static Card CreateCard (Dictionary<string, int> dictIn, string nameIn) {
+        return new Card(dictIn, nameIn);
+    }
+
+    public static GameObject CreateCardGameObject (Dictionary<string, int> dictIn, string nameIn) {
+        GameObject newCardObj = Instantiate(GameManager.cardObj, GameObject.Find(
+                    "Canvas").transform);
+        newCardObj.GetComponent<CardComponent>().card = CreateCard(dictIn, nameIn);
+        return newCardObj;
     }
 }
