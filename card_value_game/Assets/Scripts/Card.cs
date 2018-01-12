@@ -3,8 +3,8 @@ using System.Collections.Generic;
 
 public class Card {
 
-    string name;
-    Dictionary<string, int> properties;
+    public string name;
+    public Dictionary<string, int> properties;
 
     public Card (Dictionary<string, int> propertiesIn, string nameIn) {
         name = nameIn;
