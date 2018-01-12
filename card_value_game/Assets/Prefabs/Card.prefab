@@ -38,6 +38,7 @@ GameObject:
   - component: {fileID: 224134975974738444}
   - component: {fileID: 222857901758774360}
   - component: {fileID: 114500295037611026}
+  - component: {fileID: 114392540961057890}
   m_Layer: 5
   m_Name: Card
   m_TagString: Untagged
@@ -45,6 +46,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &114392540961057890
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1916490817886912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a2a632b6719a4101b25102aec88f0e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  propertyObj: {fileID: 0}
 --- !u!114 &114491954443652198
 MonoBehaviour:
   m_ObjectHideFlags: 1
