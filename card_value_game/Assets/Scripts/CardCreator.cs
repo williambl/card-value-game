@@ -12,7 +12,8 @@ public class CardCreator : MonoBehaviour {
         testCardDict.Add("test property", 50);
         testCard = new Card(testCardDict, "testCard");
 
-        GameObject newCardObj = Instantiate(cardObj);
+        GameObject newCardObj = Instantiate(cardObj, GameObject.Find(
+                    "Canvas").transform);
         newCardObj.GetComponent<CardComponent>().card = testCard;
     }
 	
