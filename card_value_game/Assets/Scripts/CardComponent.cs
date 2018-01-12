@@ -10,6 +10,8 @@ public class CardComponent : MonoBehaviour {
     void Start () {
         foreach (var property in card.properties) {
             GameObject newProperty = Instantiate(propertyObj, transform);
+            newProperty.GetComponent<PropertyComponent>().propertyName = property.Key;
+            newProperty.GetComponent<PropertyComponent>().propertyValue = property.Value;
         }
     }
 
