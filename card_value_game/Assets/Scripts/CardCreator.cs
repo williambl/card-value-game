@@ -8,7 +8,7 @@ public class CardCreator : MonoBehaviour {
         Dictionary<string, int> testCardDict = new Dictionary<string, int>();
         testCardDict.Add("test property", 50);
         testCardDict.Add("test property 2", 100);
-        CreateCardGameObject(testCardDict, "testCard");
+        CardRegistry.registry.Add(CreateCardGameObject(testCardDict, "testCard").GetComponent<CardComponent>().card);
     }
 	
     // Update is called once per frame
