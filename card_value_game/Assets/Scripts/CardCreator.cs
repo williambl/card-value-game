@@ -10,6 +10,7 @@ public class CardCreator : MonoBehaviour {
     void Start () {
         Dictionary<string, int> testCardDict = new Dictionary<string, int>();
         testCardDict.Add("test property", 50);
+        testCardDict.Add("test property 2", 100);
         testCard = new Card(testCardDict, "testCard");
 
         GameObject newCardObj = Instantiate(cardObj, GameObject.Find(
