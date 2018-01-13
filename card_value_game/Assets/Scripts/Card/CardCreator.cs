@@ -1,13 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TinyJson;
 
 public class CardCreator : MonoBehaviour {
 
     void Start () {
-        Dictionary<string, int> testCardDict = new Dictionary<string, int>();
-        testCardDict.Add("test property", 50);
-        testCardDict.Add("test property 2", 100);
+        string jsonString = "{ \"test0\": 100, \"test1\": 50  }";
+        Debug.Log(jsonString);
+        Dictionary<string, int> testCardDict = JSONParser.FromJson<Dictionary<string, int>>(jsonString);
         CardRegistry.registry.Add(CreateCardGameObject(testCardDict, "testCard").GetComponent<CardComponent>().card);
     }
 	
