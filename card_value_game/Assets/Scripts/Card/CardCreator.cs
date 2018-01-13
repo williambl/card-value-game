@@ -1,19 +1,34 @@
-﻿using System.Collections;
+﻿using System.IO;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TinyJson;
 
 public class CardCreator : MonoBehaviour {
 
     void Start () {
-        Dictionary<string, int> testCardDict = new Dictionary<string, int>();
-        testCardDict.Add("test property", 50);
-        testCardDict.Add("test property 2", 100);
-        CardRegistry.registry.Add(CreateCardGameObject(testCardDict, "testCard").GetComponent<CardComponent>().card);
+        Debug.Log(GameManager.cardPath);
+        ImportCardsFromDirectory(GameManager.cardPath);
     }
 	
     // Update is called once per frame
     void Update () {
 		
+    }
+
+    public void ImportCardsFromDirectory (string path) {
+        foreach (string file in Directory.GetFiles(path)) {
+            string name = Path.GetFileNameWithoutExtension(file);
+            string json = File.ReadAllText(file);
+
+            CardRegistry.registry.Add(
+                    CreateCardGameObject(JSONtoDict(json), name)
+                    .GetComponent<CardComponent>().card);
+        }
+    }
+
+    Dictionary<string, int> JSONtoDict (string json) {
+        return JSONParser.FromJson<Dictionary<string, int>>(json);
     }
 
     public static Card CreateCard (Dictionary<string, int> dictIn, string nameIn) {
