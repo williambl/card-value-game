@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System.IO;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TinyJson;
@@ -6,15 +7,28 @@ using TinyJson;
 public class CardCreator : MonoBehaviour {
 
     void Start () {
-        string jsonString = "{ \"test0\": 100, \"test1\": 50  }";
-        Debug.Log(jsonString);
-        Dictionary<string, int> testCardDict = JSONParser.FromJson<Dictionary<string, int>>(jsonString);
-        CardRegistry.registry.Add(CreateCardGameObject(testCardDict, "testCard").GetComponent<CardComponent>().card);
+        Debug.Log(GameManager.cardPath);
+        ImportCardsFromDirectory(GameManager.cardPath);
     }
 	
     // Update is called once per frame
     void Update () {
 		
+    }
+
+    public void ImportCardsFromDirectory (string path) {
+        foreach (string file in Directory.GetFiles(path)) {
+            string name = Path.GetFileNameWithoutExtension(file);
+            string json = File.ReadAllText(file);
+
+            CardRegistry.registry.Add(
+                    CreateCardGameObject(JSONtoDict(json), name)
+                    .GetComponent<CardComponent>().card);
+        }
+    }
+
+    Dictionary<string, int> JSONtoDict (string json) {
+        return JSONParser.FromJson<Dictionary<string, int>>(json);
     }
 
     public static Card CreateCard (Dictionary<string, int> dictIn, string nameIn) {
